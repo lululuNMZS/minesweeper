@@ -1,4 +1,4 @@
-import findhwnd
+import winapi
 
-hwnd = findhwnd.find_the_hwnd()
+hwnd = winapi.find_the_hwnd()
 
