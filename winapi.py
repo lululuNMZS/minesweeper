@@ -1,4 +1,5 @@
 from win32 import win32gui
+import win32api
 
 def find_the_hwnd():
     class_name = "TMain"
@@ -18,3 +19,6 @@ def find_the_hwnd():
         print("didnt find")
 
     return hwnd
+
+def mouse_click():
+    return
