@@ -11,4 +11,8 @@ from PIL import Image
 algorithm.init_minemap()
 algorithm.update_minemap()
 
+for j in range(8):
+    for i in range(8):
+        print(algorithm.map_array[i][j])
+
 print(algorithm.map_array)
