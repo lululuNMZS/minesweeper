@@ -4,9 +4,6 @@
     <list default="true" id="6839f9d2-9265-4d19-887b-6bc072a7f735" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/algorithm.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/colourdata.py" beforeDir="false" afterPath="$PROJECT_DIR$/colourdata.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/winapi.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_winapi.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,6 +88,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="911" y="265" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1597496345228" />
+    <state x="896" y="433" key="Github.CreateGistDialog" timestamp="1597578271436">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="896" y="433" key="Github.CreateGistDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1597578271436" />
     <state x="770" y="465" width="292" height="294" key="Github.ShareDialog" timestamp="1596345514497">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -99,22 +100,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="959" y="271" key="Github.UntrackedFilesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1596345087851" />
-    <state width="1212" height="150" key="GridCell.Tab.0.bottom" timestamp="1597575413561">
+    <state width="1212" height="150" key="GridCell.Tab.0.bottom" timestamp="1597578436202">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1212" height="150" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1597575413561" />
-    <state width="1212" height="150" key="GridCell.Tab.0.center" timestamp="1597575413561">
+    <state width="1212" height="150" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1597578436202" />
+    <state width="1212" height="150" key="GridCell.Tab.0.center" timestamp="1597578436202">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1212" height="150" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1597575413560" />
-    <state width="1212" height="150" key="GridCell.Tab.0.left" timestamp="1597575413560">
+    <state width="1212" height="150" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1597578436202" />
+    <state width="1212" height="150" key="GridCell.Tab.0.left" timestamp="1597578436201">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1212" height="150" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1597575413560" />
-    <state width="1212" height="150" key="GridCell.Tab.0.right" timestamp="1597575413561">
+    <state width="1212" height="150" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1597578436201" />
+    <state width="1212" height="150" key="GridCell.Tab.0.right" timestamp="1597578436202">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1212" height="150" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1597575413561" />
+    <state width="1212" height="150" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1597578436202" />
     <state width="1898" height="286" key="GridCell.Tab.1.bottom" timestamp="1596345576879">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -135,17 +136,17 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="609" y="172" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1597496369089" />
-    <state x="811" y="333" key="com.intellij.ide.util.TipDialog" timestamp="1597552922356">
+    <state x="811" y="333" key="com.intellij.ide.util.TipDialog" timestamp="1597578068982">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="811" y="333" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1597552922356" />
+    <state x="811" y="333" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1597578068982" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/my_winapi.py</url>
-          <option name="timeStamp" value="1" />
+          <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

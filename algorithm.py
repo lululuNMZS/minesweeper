@@ -28,8 +28,8 @@ def scan_minemap():
 
 def init_minemap():
     left, top, right, bottom = scan_minemap()
-    map_x = round((right - left) / 16 + 1)
-    map_y = round((bottom - top) / 16 + 1)
+    map_x = round((right - left) / 16)
+    map_y = round((bottom - top) / 16)
 
     map_array = numpy.zeros([map_x, map_y])
 
@@ -50,14 +50,16 @@ def update_minemap():
 
 
 
-    map_x = round((right - left) / 16 +1)
-    map_y = round((bottom - top) / 16 +1)
+    map_x = round((right - left) / 16)
+    map_y = round((bottom - top) / 16)
+
 
     block_width = 16
     block_height = 16
     # update the map data
     for j in range(map_y):
         for i in range(map_x):
+            print(i)
             small_rect = (i*block_width, j*block_height, (i+1)*block_width, (j+1)*block_height)
             img_small_rect = mine_scan.crop(small_rect)
             #win32api.SetCursorPos([left+i*16, top+j*16])
