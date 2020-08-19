@@ -8,10 +8,10 @@ def find_the_hwnd():
     title_name = "Minesweeper Arbiter "
     hwnd = win32gui.FindWindow(None,title_name)
 
-    if hwnd:
-        print("find the window")
-    else:
-        print("didnt find")
+    #if hwnd:
+    #    print("find the window")
+    #else:
+    #    print("didnt find")
 
     return hwnd
 
@@ -21,6 +21,7 @@ def find_the_coordinate(hwnd):
     right = 0
     bottom = 0
     left, top, right, bottom = win32gui.GetWindowRect(hwnd)
+
     #print(str(left), str(top), str(right), str(bottom))
 
     return (left,top,right,bottom)

@@ -6,6 +6,7 @@ import numpy
 import math
 import win32api
 import time
+import random
 
 
 #scan the mine screen,save the mine state to a map[][]
@@ -28,7 +29,7 @@ def init_minemap():
     map_x = round((right - left) / 16)
     map_y = round((bottom - top) / 16)
 
-    map_array = numpy.zeros([map_x, map_y])
+    map_array = numpy.zeros([map_x, map_y],dtype=numpy.int8)
 
     return map_array
 
@@ -63,9 +64,8 @@ def update_minemap():
 
 
 def compare_colourdata(data,x,y):
-    #100: white board didnt clicked
+    #100: white board ,didnt clicked
     #99: flag
-    print(data)
     if data == colourdata.rgba_whiteboard:
         map_array[x][y] = 100;
     elif data == colourdata.rgba_0:
@@ -86,9 +86,50 @@ def compare_colourdata(data,x,y):
         map_array[x][y] = 8;
     elif data == colourdata.rgba_flag:
         map_array[x][y] = 99;
+    elif data == colourdata.rgba_boom:
+        map_array[x][y] = 98;
+    elif data == colourdata.rgba_boom_red:
+        map_array[x][y] = 97;
 
-#first ramdon click
 
+#the state map
 map_array = init_minemap()
 
-#
+
+
+
+def random_click():
+    left, top, right, bottom = scan_minemap()['image_rect']
+    x = random.randint(0, 99) % map_array.shape[0]
+    y = random.randint(0, 99) % map_array.shape[1]
+
+
+    while (1):
+        if map_array[x][y] == 97 or map_array[x][y] == 98 :
+            break
+
+        if map_array[x][y] == 100:
+            my_winapi.mouse_click_left(left + x*16, top + y*16)
+            break
+
+        x = random.randint(0, 99) % map_array.shape[0]
+        y = random.randint(0, 99) % map_array.shape[1]
+
+
+def get_around_state(x,y):
+    whiteboard_count = 0
+    for j in range(8):
+        if map_array[x-1][y-1] == 100:
+            whiteboard_count = whiteboard_count +1
+        if map_array[x][y-1] == 100:
+            whiteboard_count = whiteboard_count + 1
+
+    return
+
+
+def auto_run():
+    state_num = 0
+    for j in range(map_array.shape[1]):
+        for i in range(map_array.shape[0]):
+            state_num = map_array[i][j]
+
