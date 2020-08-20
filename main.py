@@ -16,4 +16,5 @@ algorithm.update_minemap()
  #       print(algorithm.map_array[i][j])
 
 print(algorithm.map_array)
-algorithm.random_click()
+#algorithm.random_click()
+algorithm.auto_run()

@@ -8,45 +8,40 @@ import win32api
 import time
 import random
 
+hwnd = my_winapi.find_the_hwnd()
+left, top, right, bottom = my_winapi.find_the_start_pixel(hwnd)
+boom_block_width = 16
+boom_block_height = 16
+
 
 #scan the mine screen,save the mine state to a map[][]
 def scan_minemap():
-    #scan
-    hwnd = my_winapi.find_the_hwnd()
-    left, top, right, bottom = my_winapi.find_the_coordinate(hwnd)
+    #grab the pic ,start from the boom area
+    mine_scan = ImageGrab.grab().crop((left, top, right, bottom))
 
-    left += 15
-    top += 100
-    right -= 15
-    bottom -= 42
-
-    mine_scan = ImageGrab.grab().crop((left,top,right,bottom))
-
-    return {'image_rect':(left,top,right,bottom), 'image':mine_scan}
+    return mine_scan
 
 def init_minemap():
-    left, top, right, bottom = scan_minemap()['image_rect']
-    map_x = round((right - left) / 16)
-    map_y = round((bottom - top) / 16)
-
+    #get the map indexs
+    map_x, map_y = my_winapi.get_the_map_boundary(left, top, right, bottom)
+    print(map_x, map_y)
+    #init the map with zero
     map_array = numpy.zeros([map_x, map_y],dtype=numpy.int8)
 
     return map_array
 
+#the state map
+map_array = init_minemap()
+
 def update_minemap():
-    left, top, right, bottom = scan_minemap()['image_rect']
-    image_mine_scan = scan_minemap()['image']
+    image_mine_scan = scan_minemap()
+    map_x, map_y = my_winapi.get_the_map_boundary(left, top, right, bottom)
 
-    map_x = round((right - left) / 16)
-    map_y = round((bottom - top) / 16)
-
-    block_width = 16
-    block_height = 16
 
     # update the map data
     for j in range(map_y):
         for i in range(map_x):
-            small_rect = (i*block_width, j*block_height, (i+1)*block_width, (j+1)*block_height)
+            small_rect = (i*boom_block_width, j*boom_block_height, (i+1)*boom_block_width, (j+1)*boom_block_height)
             img_small_rect = image_mine_scan.crop(small_rect)
 
             #win32api.SetCursorPos([left+i*16, top+j*16])
@@ -92,14 +87,12 @@ def compare_colourdata(data,x,y):
         map_array[x][y] = 97;
 
 
-#the state map
-map_array = init_minemap()
+
 
 
 
 
 def random_click():
-    left, top, right, bottom = scan_minemap()['image_rect']
     x = random.randint(0, 99) % map_array.shape[0]
     y = random.randint(0, 99) % map_array.shape[1]
 
@@ -109,7 +102,7 @@ def random_click():
             break
 
         if map_array[x][y] == 100:
-            my_winapi.mouse_click_left(left + x*16, top + y*16)
+            my_winapi.mouse_click_left(left + x*boom_block_width, top + y*boom_block_height)
             break
 
         x = random.randint(0, 99) % map_array.shape[0]
@@ -118,18 +111,47 @@ def random_click():
 
 def get_around_state(x,y):
     whiteboard_count = 0
-    for j in range(8):
+
+    if (x-1) >= 0 and (y-1) >= 0 and (x+1) < map_array.shape[0] and (y+1) < map_array.shape[1]:
         if map_array[x-1][y-1] == 100:
-            whiteboard_count = whiteboard_count +1
-        if map_array[x][y-1] == 100:
+            whiteboard_count = whiteboard_count+1
+        if map_array[x-1][y] == 100:
+            whiteboard_count = whiteboard_count + 1
+        if map_array[x-1][y+1] == 100:
             whiteboard_count = whiteboard_count + 1
 
-    return
+        if map_array[x][y-1] == 100:
+            whiteboard_count = whiteboard_count + 1
+        if map_array[x+1][y-1] == 100:
+            whiteboard_count = whiteboard_count + 1
+
+
+
+        if map_array[x+1][y] == 100:
+            whiteboard_count = whiteboard_count + 1
+        if map_array[x+1][y+1] == 100:
+            whiteboard_count = whiteboard_count + 1
+
+        if map_array[x][y+1] == 100:
+             whiteboard_count = whiteboard_count + 1
+
+    return whiteboard_count
 
 
 def auto_run():
-    state_num = 0
-    for j in range(map_array.shape[1]):
+     for j in range(map_array.shape[1]):
         for i in range(map_array.shape[0]):
+            state_num = 0
+            around_whiteboard_count = 0
             state_num = map_array[i][j]
+            if state_num >=1 and state_num <= 8:
+                #around_whiteboard_count = get_around_state(i, j)
+                #print(i,j)
+                print(state_num,'state')
+                print(get_around_state(i,j))
+                #if around_whiteboard_count  == state_num:
+                #    if map_array[i][j] == 100:
+                 #        my_winapi.mouse_click_right(left + 0*boom_block_width, top + 0*boom_block_height)
+
+
 
