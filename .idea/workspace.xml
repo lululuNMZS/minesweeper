@@ -5,7 +5,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/algorithm.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_winapi.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_winapi.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,7 +63,7 @@
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -103,46 +102,46 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="959" y="271" key="Github.UntrackedFilesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1596345087851" />
-    <state width="1384" height="265" key="GridCell.Tab.0.bottom" timestamp="1597934057303">
+    <state width="1212" height="263" key="GridCell.Tab.0.bottom" timestamp="1598093279452">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1384" height="265" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1597934057303" />
-    <state width="1384" height="265" key="GridCell.Tab.0.center" timestamp="1597934057303">
+    <state width="1212" height="263" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1598093279452" />
+    <state width="1212" height="263" key="GridCell.Tab.0.center" timestamp="1598093279452">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1384" height="265" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1597934057303" />
-    <state width="1384" height="265" key="GridCell.Tab.0.left" timestamp="1597934057302">
+    <state width="1212" height="263" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1598093279452" />
+    <state width="1212" height="263" key="GridCell.Tab.0.left" timestamp="1598093279452">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1384" height="265" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1597934057302" />
-    <state width="1384" height="265" key="GridCell.Tab.0.right" timestamp="1597934057303">
+    <state width="1212" height="263" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1598093279452" />
+    <state width="1212" height="263" key="GridCell.Tab.0.right" timestamp="1598093279452">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1384" height="265" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1597934057303" />
-    <state width="1898" height="286" key="GridCell.Tab.1.bottom" timestamp="1596345576879">
+    <state width="1212" height="263" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1598093279452" />
+    <state width="1212" height="263" key="GridCell.Tab.1.bottom" timestamp="1598093279452">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1898" height="286" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1596345576879" />
-    <state width="1898" height="286" key="GridCell.Tab.1.center" timestamp="1596345576878">
+    <state width="1212" height="263" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1598093279452" />
+    <state width="1212" height="263" key="GridCell.Tab.1.center" timestamp="1598093279452">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1898" height="286" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1596345576878" />
-    <state width="1898" height="286" key="GridCell.Tab.1.left" timestamp="1596345576878">
+    <state width="1212" height="263" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1598093279452" />
+    <state width="1212" height="263" key="GridCell.Tab.1.left" timestamp="1598093279452">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1898" height="286" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1596345576878" />
-    <state width="1898" height="286" key="GridCell.Tab.1.right" timestamp="1596345576878">
+    <state width="1212" height="263" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1598093279452" />
+    <state width="1212" height="263" key="GridCell.Tab.1.right" timestamp="1598093279452">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1898" height="286" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1596345576878" />
+    <state width="1212" height="263" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1598093279452" />
     <state x="609" y="172" key="SettingsEditor" timestamp="1597496369089">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="609" y="172" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1597496369089" />
-    <state x="811" y="333" key="com.intellij.ide.util.TipDialog" timestamp="1597578068982">
+    <state x="811" y="333" key="com.intellij.ide.util.TipDialog" timestamp="1598062780607">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="811" y="333" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1597578068982" />
+    <state x="811" y="333" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1598062780607" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -98,9 +98,6 @@ def random_click():
 
 
     while (1):
-        if map_array[x][y] == 97 or map_array[x][y] == 98 :
-            break
-
         if map_array[x][y] == 100:
             my_winapi.mouse_click_left(left + x*boom_block_width, top + y*boom_block_height)
             break
@@ -109,12 +106,15 @@ def random_click():
         y = random.randint(0, 99) % map_array.shape[1]
 
 
+
 def get_around_state(x,y):
     whiteboard_count = 0
 
-    if (x-1) >= 0 and (y-1) >= 0 and (x+1) < map_array.shape[0] and (y+1) < map_array.shape[1]:
+    #middle area
+    if (x-1) >= 0 and (y-1) >= 0 and \
+            (x+1) < map_array.shape[0] and (y+1) < map_array.shape[1]:
         if map_array[x-1][y-1] == 100:
-            whiteboard_count = whiteboard_count+1
+            whiteboard_count = whiteboard_count + 1
         if map_array[x-1][y] == 100:
             whiteboard_count = whiteboard_count + 1
         if map_array[x-1][y+1] == 100:
@@ -135,23 +135,347 @@ def get_around_state(x,y):
         if map_array[x][y+1] == 100:
              whiteboard_count = whiteboard_count + 1
 
-    return whiteboard_count
+        return whiteboard_count
 
+    #4 corners
+    #(left, top)
+    if (x-1) < 0 and (y-1) < 0:
+        if map_array[x+1][y] == 100:
+            whiteboard_count = whiteboard_count + 1
+        if map_array[x][y+1] == 100:
+            whiteboard_count = whiteboard_count + 1
+        if map_array[x+1][y+1] == 100:
+            whiteboard_count = whiteboard_count + 1
+
+        return whiteboard_count
+
+    #(right, bottom)
+    if (x+1) >= map_array.shape[0] and (y+1) >= map_array.shape[1]:
+        if map_array[x-1][y-1] == 100:
+            whiteboard_count = whiteboard_count + 1
+        if map_array[x][y-1] == 100:
+            whiteboard_count = whiteboard_count + 1
+        if map_array[x-1][y] == 100:
+            whiteboard_count = whiteboard_count + 1
+
+        return whiteboard_count
+
+    #(top, right)
+    if (x + 1) >= map_array.shape[0] and (y-1) < 0:
+        if map_array[x-1][y] == 100:
+            whiteboard_count = whiteboard_count + 1
+        if map_array[x-1][y+1] == 100:
+            whiteboard_count = whiteboard_count + 1
+        if map_array[x][y+1] == 100:
+            whiteboard_count = whiteboard_count + 1
+
+        return whiteboard_count
+
+    #(left, bottom)
+    if (x - 1) < 0  and (y + 1) >= map_array.shape[1]:
+        if map_array[x][y-1] == 100:
+            whiteboard_count = whiteboard_count + 1
+        if map_array[x+1][y-1] == 100:
+            whiteboard_count = whiteboard_count + 1
+        if map_array[x+1][y] == 100:
+            whiteboard_count = whiteboard_count + 1
+
+        return whiteboard_count
+
+    #4 sides
+    #left side
+    if (x-1) < 0 and (y-1) >= 0 or \
+            (x-1) < 0 and (y+1) <= map_array.shape[1]:
+        if (map_array[x][y-1] == 100):
+            whiteboard_count = whiteboard_count+1
+        if (map_array[x+1][y-1] == 100):
+            whiteboard_count = whiteboard_count+1
+        if (map_array[x+1][y] == 100):
+            whiteboard_count = whiteboard_count+1
+        if (map_array[x+1][y+1] == 100):
+            whiteboard_count = whiteboard_count+1
+        if (map_array[x][y+1] == 100):
+            whiteboard_count = whiteboard_count+1
+
+        return whiteboard_count
+
+    #right side
+    if (x+1) >= map_array.shape[0] and (y-1) >= 0 or \
+            (x+1) >= map_array.shape[0] and (y+1) <= map_array.shape[1]:
+        if (map_array[x][y-1] == 100):
+            whiteboard_count = whiteboard_count+1
+        if (map_array[x-1][y-1] == 100):
+            whiteboard_count = whiteboard_count+1
+        if (map_array[x-1][y] == 100):
+            whiteboard_count = whiteboard_count+1
+        if (map_array[x-1][y+1] == 100):
+            whiteboard_count = whiteboard_count+1
+        if (map_array[x][y+1] == 100):
+            whiteboard_count = whiteboard_count+1
+
+        return whiteboard_count
+
+    #top side
+    if (x-1) >= 0 and (y-1) < 0 or \
+            (x+1) <= map_array.shape[0] and (y-1) <0:
+        if (map_array[x-1][y] == 100):
+            whiteboard_count = whiteboard_count+1
+        if (map_array[x-1][y+1] == 100):
+            whiteboard_count = whiteboard_count+1
+        if (map_array[x][y+1] == 100):
+            whiteboard_count = whiteboard_count+1
+        if (map_array[x+1][y+1] == 100):
+            whiteboard_count = whiteboard_count+1
+        if (map_array[x+1][y] == 100):
+            whiteboard_count = whiteboard_count+1
+
+        return whiteboard_count
+
+    #bottom side
+    if (x-1) >= 0 and (y+1) >= map_array.shape[1] or \
+            (x+1) <= map_array.shape[0] and (y+1) >= map_array.shape[1]:
+        if (map_array[x-1][y] == 100):
+            whiteboard_count = whiteboard_count+1
+        if (map_array[x-1][y-1] == 100):
+            whiteboard_count = whiteboard_count+1
+        if (map_array[x][y-1] == 100):
+            whiteboard_count = whiteboard_count+1
+        if (map_array[x+1][y-1] == 100):
+            whiteboard_count = whiteboard_count+1
+        if (map_array[x+1][y] == 100):
+            whiteboard_count = whiteboard_count+1
+
+        return whiteboard_count
+
+
+
+
+
+def put_the_flag(x,y):
+
+    #middle area
+    if (x-1) >= 0 and (y-1) >= 0 and \
+            (x+1) < map_array.shape[0] and (y+1) < map_array.shape[1]:
+        if map_array[x-1][y-1] == 100:
+            my_winapi.mouse_click_right(left + (x-1)*boom_block_width, top + (y-1)*boom_block_height)
+        if map_array[x-1][y] == 100:
+            my_winapi.mouse_click_right(left + (x-1)*boom_block_width, top + y*boom_block_height)
+        if map_array[x-1][y+1] == 100:
+            my_winapi.mouse_click_right(left + (x-1)*boom_block_width, top + (y+1)*boom_block_height)
+
+        if map_array[x][y-1] == 100:
+            my_winapi.mouse_click_right(left + x*boom_block_width, top + (y-1)*boom_block_height)
+        if map_array[x+1][y-1] == 100:
+            my_winapi.mouse_click_right(left + (x+1)*boom_block_width, top + (y-1)*boom_block_height)
+
+
+
+        if map_array[x+1][y] == 100:
+            my_winapi.mouse_click_right(left + (x+1)*boom_block_width, top + y*boom_block_height)
+        if map_array[x+1][y+1] == 100:
+            my_winapi.mouse_click_right(left + (x+1)*boom_block_width, top + (y+1)*boom_block_height)
+
+        if map_array[x][y+1] == 100:
+            my_winapi.mouse_click_right(left + x*boom_block_width, top + (y+1)*boom_block_height)
+
+        return
+
+    #4 corners
+    #(left, top)
+    if (x-1) < 0 and (y-1) < 0:
+        if map_array[x+1][y] == 100:
+            my_winapi.mouse_click_right(left + (x+1)*boom_block_width, top + y*boom_block_height)
+        if map_array[x][y+1] == 100:
+            my_winapi.mouse_click_right(left + x*boom_block_width, top + (y+1)*boom_block_height)
+        if map_array[x+1][y+1] == 100:
+            my_winapi.mouse_click_right(left + (x+1)*boom_block_width, top + (y+1)*boom_block_height)
+
+        return
+
+    #(right, bottom)
+    if (x+1) >= map_array.shape[0] and (y+1) >= map_array.shape[1]:
+        if map_array[x-1][y-1] == 100:
+            my_winapi.mouse_click_right(left + (x-1)*boom_block_width, top + (y-1)*boom_block_height)
+        if map_array[x][y-1] == 100:
+            my_winapi.mouse_click_right(left + x*boom_block_width, top + (y-1)*boom_block_height)
+        if map_array[x-1][y] == 100:
+            my_winapi.mouse_click_right(left + (x-1)*boom_block_width, top + y*boom_block_height)
+
+        return
+
+    #(top, right)
+    if (x + 1) >= map_array.shape[0] and (y-1) < 0:
+        if map_array[x-1][y] == 100:
+            my_winapi.mouse_click_right(left + (x-1)*boom_block_width, top + y*boom_block_height)
+        if map_array[x-1][y+1] == 100:
+            my_winapi.mouse_click_right(left + (x-1)*boom_block_width, top + (y+1)*boom_block_height)
+        if map_array[x][y+1] == 100:
+            my_winapi.mouse_click_right(left + x*boom_block_width, top + (y+1)*boom_block_height)
+
+        return
+
+    #(left, bottom)
+    if (x - 1) < 0  and (y + 1) >= map_array.shape[1]:
+        if map_array[x][y-1] == 100:
+            my_winapi.mouse_click_right(left + x*boom_block_width, top + (y-1)*boom_block_height)
+        if map_array[x+1][y-1] == 100:
+            my_winapi.mouse_click_right(left + (x+1)*boom_block_width, top + (y-1)*boom_block_height)
+        if map_array[x+1][y] == 100:
+            my_winapi.mouse_click_right(left + (x+1)*boom_block_width, top + y*boom_block_height)
+
+        return
+
+    #4 sides
+    #left side
+    if (x-1) < 0 and (y-1) >= 0 or \
+            (x-1) < 0 and (y+1) <= map_array.shape[1]:
+        if (map_array[x][y-1] == 100):
+            my_winapi.mouse_click_right(left + x*boom_block_width, top + (y-1)*boom_block_height)
+        if (map_array[x+1][y-1] == 100):
+            my_winapi.mouse_click_right(left + (x+1)*boom_block_width, top + (y-1)*boom_block_height)
+        if (map_array[x+1][y] == 100):
+            my_winapi.mouse_click_right(left + (x+1)*boom_block_width, top + y*boom_block_height)
+        if (map_array[x+1][y+1] == 100):
+            my_winapi.mouse_click_right(left + (x+1)*boom_block_width, top + (y+1)*boom_block_height)
+        if (map_array[x][y+1] == 100):
+            my_winapi.mouse_click_right(left + x*boom_block_width, top + (y+1)*boom_block_height)
+
+        return
+
+    #right side
+    if (x+1) >= map_array.shape[0] and (y-1) >= 0 or \
+            (x+1) >= map_array.shape[0] and (y+1) <= map_array.shape[1]:
+        if (map_array[x][y-1] == 100):
+            my_winapi.mouse_click_right(left + x*boom_block_width, top + (y-1)*boom_block_height)
+        if (map_array[x-1][y-1] == 100):
+            my_winapi.mouse_click_right(left + (x-1)*boom_block_width, top + (y-1)*boom_block_height)
+        if (map_array[x-1][y] == 100):
+            my_winapi.mouse_click_right(left + (x-1)*boom_block_width, top + y*boom_block_height)
+        if (map_array[x-1][y+1] == 100):
+            my_winapi.mouse_click_right(left + (x-1)*boom_block_width, top + (y+1)*boom_block_height)
+        if (map_array[x][y+1] == 100):
+            my_winapi.mouse_click_right(left + x*boom_block_width, top + (y+1)*boom_block_height)
+        print(map_array[1,0])
+        print("test")
+        return
+
+    #top side
+    if (x-1) >= 0 and (y-1) < 0 or \
+            (x+1) <= map_array.shape[0] and (y-1) <0:
+        if (map_array[x-1][y] == 100):
+            my_winapi.mouse_click_right(left + (x-1)*boom_block_width, top + y*boom_block_height)
+        if (map_array[x-1][y+1] == 100):
+            my_winapi.mouse_click_right(left + (x-1)*boom_block_width, top + (y+1)*boom_block_height)
+        if (map_array[x][y+1] == 100):
+            my_winapi.mouse_click_right(left + x*boom_block_width, top + (y+1)*boom_block_height)
+        if (map_array[x+1][y+1] == 100):
+            my_winapi.mouse_click_right(left + (x+1)*boom_block_width, top + (y+1)*boom_block_height)
+        if (map_array[x+1][y] == 100):
+            my_winapi.mouse_click_right(left + (x+1)*boom_block_width, top + y*boom_block_height)
+
+        return
+
+    #bottom side
+    if (x-1) <= 0 and (y+1) >= map_array.shape[1] or \
+            (x+1) <= map_array.shape[0] and (y+1) >= map_array.shape[1]:
+        if (map_array[x-1][y] == 100):
+            my_winapi.mouse_click_right(left + (x-1)*boom_block_width, top + y*boom_block_height)
+        if (map_array[x-1][y-1] == 100):
+            my_winapi.mouse_click_right(left + (x-1)*boom_block_width, top + (y-1)*boom_block_height)
+        if (map_array[x][y-1] == 100):
+            my_winapi.mouse_click_right(left + x*boom_block_width, top + (y-1)*boom_block_height)
+        if (map_array[x+1][y-1] == 100):
+            my_winapi.mouse_click_right(left + (x+1)*boom_block_width, top + (y-1)*boom_block_height)
+        if (map_array[x+1][y] == 100):
+            my_winapi.mouse_click_right(left + (x+1)*boom_block_width, top + y*boom_block_height)
+
+
+    return
+
+def test():
+    print(left, top)
+    put_the_flag(7,7)
+
+
+def traverse_the_map():
+    for j in range(map_array.shape[1]):
+        for i in range(map_array.shape[0]):
+            state_num = map_array[i][j]
+            return (state_num, i, j)
 
 def auto_run():
+
+    """
      for j in range(map_array.shape[1]):
         for i in range(map_array.shape[0]):
             state_num = 0
             around_whiteboard_count = 0
+            update_minemap()
             state_num = map_array[i][j]
+
+
+
+
             if state_num >=1 and state_num <= 8:
-                #around_whiteboard_count = get_around_state(i, j)
-                #print(i,j)
-                print(state_num,'state')
-                print(get_around_state(i,j))
+                around_whiteboard_count = get_around_state(i, j)
+
+                print(i,j, 'state:', state_num)
+                print(around_whiteboard_count, "around count")
+                if (state_num == around_whiteboard_count):
+                    put_the_flag(i,j)
+
+                continue
+
+            # if (state_num == around_whiteboard_count):
+                    #right click
+
+
+            # boom or red_boom, exit
+            if (state_num == 98 or state_num == 99):
+                print(i, j, state_num, "game over")
+                return
+
+            random_click()
+
+
+
+
                 #if around_whiteboard_count  == state_num:
                 #    if map_array[i][j] == 100:
                  #        my_winapi.mouse_click_right(left + 0*boom_block_width, top + 0*boom_block_height)
+    """
+
+    x=0
+    y=0
+    while(1):
+        if ((x >= map_array.shape[0]) or (y >= map_array.shape[1])):
+            x= 0
+            y=0
+
+        random_click()
+        update_minemap()
+
+        state_num,x,y = traverse_the_map()
+        #print("state num:", state_num)
+
+        if (state_num == 100):
+            x = x + 1
+            y = y + 1
+            continue
+        if (state_num == 98 or state_num == 97):
+            print("game over")
+            return
+
+        if (state_num >= 1 and state_num <= 8):
+            around_whiteboard_count = get_around_state(x,y)
+            print("state num:", state_num)
+            print("around count:", around_whiteboard_count)
+            if (state_num == around_whiteboard_count):
+                put_the_flag(x, y)
+
+        x = x + 1
+        y = y + 1
+
 
 
 
