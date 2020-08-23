@@ -105,34 +105,37 @@ def random_click():
         x = random.randint(0, 99) % map_array.shape[0]
         y = random.randint(0, 99) % map_array.shape[1]
 
+        print("random click bug" , x, y)
+
 
 
 def get_around_state(x,y):
     whiteboard_count = 0
 
+    #if the block is whiteboard or flag, plus the count
     #middle area
     if (x-1) >= 0 and (y-1) >= 0 and \
             (x+1) < map_array.shape[0] and (y+1) < map_array.shape[1]:
-        if map_array[x-1][y-1] == 100:
+        if map_array[x-1][y-1] == 100 or map_array[x-1][y-1] == 99:
             whiteboard_count = whiteboard_count + 1
-        if map_array[x-1][y] == 100:
+        if map_array[x-1][y] == 100 or map_array[x-1][y] == 99:
             whiteboard_count = whiteboard_count + 1
-        if map_array[x-1][y+1] == 100:
-            whiteboard_count = whiteboard_count + 1
-
-        if map_array[x][y-1] == 100:
-            whiteboard_count = whiteboard_count + 1
-        if map_array[x+1][y-1] == 100:
+        if map_array[x-1][y+1] == 100 or map_array[x-1][y+1] == 99:
             whiteboard_count = whiteboard_count + 1
 
-
-
-        if map_array[x+1][y] == 100:
+        if map_array[x][y-1] == 100 or map_array[x][y-1] == 99:
             whiteboard_count = whiteboard_count + 1
-        if map_array[x+1][y+1] == 100:
+        if map_array[x+1][y-1] == 100 or map_array[x+1][y-1] == 99:
             whiteboard_count = whiteboard_count + 1
 
-        if map_array[x][y+1] == 100:
+
+
+        if map_array[x+1][y] == 100 or map_array[x+1][y] == 99:
+            whiteboard_count = whiteboard_count + 1
+        if map_array[x+1][y+1] == 100 or map_array[x+1][y+1] == 99:
+            whiteboard_count = whiteboard_count + 1
+
+        if map_array[x][y+1] == 100 or map_array[x][y+1] == 99:
              whiteboard_count = whiteboard_count + 1
 
         return whiteboard_count
@@ -140,44 +143,44 @@ def get_around_state(x,y):
     #4 corners
     #(left, top)
     if (x-1) < 0 and (y-1) < 0:
-        if map_array[x+1][y] == 100:
+        if map_array[x+1][y] == 100 or map_array[x+1][y] == 99:
             whiteboard_count = whiteboard_count + 1
-        if map_array[x][y+1] == 100:
+        if map_array[x][y+1] == 100 or map_array[x][y+1] == 99:
             whiteboard_count = whiteboard_count + 1
-        if map_array[x+1][y+1] == 100:
+        if map_array[x+1][y+1] == 100 or map_array[x+1][y+1] == 99:
             whiteboard_count = whiteboard_count + 1
 
         return whiteboard_count
 
     #(right, bottom)
     if (x+1) >= map_array.shape[0] and (y+1) >= map_array.shape[1]:
-        if map_array[x-1][y-1] == 100:
+        if map_array[x-1][y-1] == 100 or map_array[x-1][y-1] == 99:
             whiteboard_count = whiteboard_count + 1
-        if map_array[x][y-1] == 100:
+        if map_array[x][y-1] == 100 or map_array[x][y-1] == 99:
             whiteboard_count = whiteboard_count + 1
-        if map_array[x-1][y] == 100:
+        if map_array[x-1][y] == 100 or map_array[x-1][y] == 99:
             whiteboard_count = whiteboard_count + 1
 
         return whiteboard_count
 
     #(top, right)
     if (x + 1) >= map_array.shape[0] and (y-1) < 0:
-        if map_array[x-1][y] == 100:
+        if map_array[x-1][y] == 100 or map_array[x-1][y] == 99:
             whiteboard_count = whiteboard_count + 1
-        if map_array[x-1][y+1] == 100:
+        if map_array[x-1][y+1] == 100 or map_array[x-1][y+1] == 99:
             whiteboard_count = whiteboard_count + 1
-        if map_array[x][y+1] == 100:
+        if map_array[x][y+1] == 100 or map_array[x][y+1] == 99:
             whiteboard_count = whiteboard_count + 1
 
         return whiteboard_count
 
     #(left, bottom)
     if (x - 1) < 0  and (y + 1) >= map_array.shape[1]:
-        if map_array[x][y-1] == 100:
+        if map_array[x][y-1] == 100 or map_array[x][y-1] == 99:
             whiteboard_count = whiteboard_count + 1
-        if map_array[x+1][y-1] == 100:
+        if map_array[x+1][y-1] == 100 or map_array[x+1][y-1] == 99:
             whiteboard_count = whiteboard_count + 1
-        if map_array[x+1][y] == 100:
+        if map_array[x+1][y] == 100 or map_array[x+1][y] == 99:
             whiteboard_count = whiteboard_count + 1
 
         return whiteboard_count
@@ -186,15 +189,15 @@ def get_around_state(x,y):
     #left side
     if (x-1) < 0 and (y-1) >= 0 or \
             (x-1) < 0 and (y+1) <= map_array.shape[1]:
-        if (map_array[x][y-1] == 100):
+        if (map_array[x][y-1] == 100) or (map_array[x][y-1] == 99):
             whiteboard_count = whiteboard_count+1
-        if (map_array[x+1][y-1] == 100):
+        if (map_array[x+1][y-1] == 100) or (map_array[x+1][y-1] == 99):
             whiteboard_count = whiteboard_count+1
-        if (map_array[x+1][y] == 100):
+        if (map_array[x+1][y] == 100) or (map_array[x+1][y] == 99):
             whiteboard_count = whiteboard_count+1
-        if (map_array[x+1][y+1] == 100):
+        if (map_array[x+1][y+1] == 100) or (map_array[x+1][y+1] == 99):
             whiteboard_count = whiteboard_count+1
-        if (map_array[x][y+1] == 100):
+        if (map_array[x][y+1] == 100) or (map_array[x][y+1] == 99):
             whiteboard_count = whiteboard_count+1
 
         return whiteboard_count
@@ -202,15 +205,15 @@ def get_around_state(x,y):
     #right side
     if (x+1) >= map_array.shape[0] and (y-1) >= 0 or \
             (x+1) >= map_array.shape[0] and (y+1) <= map_array.shape[1]:
-        if (map_array[x][y-1] == 100):
+        if (map_array[x][y-1] == 100) or (map_array[x][y-1] == 99):
             whiteboard_count = whiteboard_count+1
-        if (map_array[x-1][y-1] == 100):
+        if (map_array[x-1][y-1] == 100) or (map_array[x-1][y-1] == 99):
             whiteboard_count = whiteboard_count+1
-        if (map_array[x-1][y] == 100):
+        if (map_array[x-1][y] == 100) or (map_array[x-1][y] == 99):
             whiteboard_count = whiteboard_count+1
-        if (map_array[x-1][y+1] == 100):
+        if (map_array[x-1][y+1] == 100) or (map_array[x-1][y+1] == 99):
             whiteboard_count = whiteboard_count+1
-        if (map_array[x][y+1] == 100):
+        if (map_array[x][y+1] == 100) or (map_array[x][y+1] == 99):
             whiteboard_count = whiteboard_count+1
 
         return whiteboard_count
@@ -218,15 +221,15 @@ def get_around_state(x,y):
     #top side
     if (x-1) >= 0 and (y-1) < 0 or \
             (x+1) <= map_array.shape[0] and (y-1) <0:
-        if (map_array[x-1][y] == 100):
+        if (map_array[x-1][y] == 100) or (map_array[x-1][y] == 99):
             whiteboard_count = whiteboard_count+1
-        if (map_array[x-1][y+1] == 100):
+        if (map_array[x-1][y+1] == 100) or (map_array[x-1][y+1] == 99):
             whiteboard_count = whiteboard_count+1
-        if (map_array[x][y+1] == 100):
+        if (map_array[x][y+1] == 100) or (map_array[x][y+1] == 99):
             whiteboard_count = whiteboard_count+1
-        if (map_array[x+1][y+1] == 100):
+        if (map_array[x+1][y+1] == 100) or (map_array[x+1][y+1] == 99):
             whiteboard_count = whiteboard_count+1
-        if (map_array[x+1][y] == 100):
+        if (map_array[x+1][y] == 100) or (map_array[x+1][y] == 99):
             whiteboard_count = whiteboard_count+1
 
         return whiteboard_count
@@ -234,15 +237,15 @@ def get_around_state(x,y):
     #bottom side
     if (x-1) >= 0 and (y+1) >= map_array.shape[1] or \
             (x+1) <= map_array.shape[0] and (y+1) >= map_array.shape[1]:
-        if (map_array[x-1][y] == 100):
+        if (map_array[x-1][y] == 100) or (map_array[x-1][y] == 99):
             whiteboard_count = whiteboard_count+1
-        if (map_array[x-1][y-1] == 100):
+        if (map_array[x-1][y-1] == 100) or (map_array[x-1][y-1] == 99):
             whiteboard_count = whiteboard_count+1
-        if (map_array[x][y-1] == 100):
+        if (map_array[x][y-1] == 100) or (map_array[x][y-1] == 99):
             whiteboard_count = whiteboard_count+1
-        if (map_array[x+1][y-1] == 100):
+        if (map_array[x+1][y-1] == 100) or (map_array[x+1][y-1] == 99):
             whiteboard_count = whiteboard_count+1
-        if (map_array[x+1][y] == 100):
+        if (map_array[x+1][y] == 100) or (map_array[x+1][y] == 99):
             whiteboard_count = whiteboard_count+1
 
         return whiteboard_count
@@ -389,7 +392,6 @@ def put_the_flag(x,y):
         if (map_array[x+1][y] == 100):
             my_winapi.mouse_click_right(left + (x+1)*boom_block_width, top + y*boom_block_height)
 
-
     return
 
 def test():
@@ -397,11 +399,14 @@ def test():
     put_the_flag(7,7)
 
 
-def traverse_the_map():
+def traverse_the_map(x,y):
+
+    """
     for j in range(map_array.shape[1]):
         for i in range(map_array.shape[0]):
             state_num = map_array[i][j]
             return (state_num, i, j)
+    """
 
 def auto_run():
 
@@ -445,36 +450,34 @@ def auto_run():
                  #        my_winapi.mouse_click_right(left + 0*boom_block_width, top + 0*boom_block_height)
     """
 
-    x=0
-    y=0
     while(1):
-        if ((x >= map_array.shape[0]) or (y >= map_array.shape[1])):
-            x= 0
-            y=0
 
         random_click()
-        update_minemap()
+        for y in range(map_array.shape[1]):
+            for x in range(map_array.shape[0]):
 
-        state_num,x,y = traverse_the_map()
-        #print("state num:", state_num)
 
-        if (state_num == 100):
-            x = x + 1
-            y = y + 1
-            continue
-        if (state_num == 98 or state_num == 97):
-            print("game over")
-            return
 
-        if (state_num >= 1 and state_num <= 8):
-            around_whiteboard_count = get_around_state(x,y)
-            print("state num:", state_num)
-            print("around count:", around_whiteboard_count)
-            if (state_num == around_whiteboard_count):
-                put_the_flag(x, y)
+                update_minemap()
 
-        x = x + 1
-        y = y + 1
+                state_num = map_array[x][y]
+                #print("state num:", state_num)
+
+                if (state_num == 100):
+                    continue
+                if (state_num == 98 or state_num == 97):
+                    print("game over")
+                    return
+
+                if (state_num >= 1 and state_num <= 8):
+                    my_winapi.mouse_click_leftandright(left + x*boom_block_width, \
+                                                       top + y*boom_block_height)
+
+                    around_whiteboard_count = get_around_state(x,y)
+                    print("state num:", state_num)
+                    print("around count:", around_whiteboard_count)
+                    if (state_num == around_whiteboard_count):
+                        put_the_flag(x, y)
 
 
 
