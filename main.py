@@ -12,3 +12,4 @@ algorithm.init_minemap()
 algorithm.update_minemap()
 algorithm.auto_run()
 
+

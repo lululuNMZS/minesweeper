@@ -7,6 +7,7 @@ import math
 import win32api
 import time
 import random
+import sys
 
 hwnd = my_winapi.find_the_hwnd()
 left, top, right, bottom = my_winapi.find_the_start_pixel(hwnd)
@@ -82,17 +83,38 @@ def compare_colourdata(data,x,y):
 
 
 
-def random_click():
+def random_click(x,y):
 
     for y in range(map_array.shape[1]):
         for x in range(map_array.shape[0]):
-            if map_array[x][y] == 100:
+            if (map_array[x][y] == 100):
                 my_winapi.mouse_click_left(left + x*boom_block_width,\
                                            top + y*boom_block_height)
+                update_minemap()
+                if (map_array[x][y] == 98 or map_array[x][y] == 97):
+                    print("random click game over")
+                    sys.exit()
                 return
 
-
-
+    """
+    for j in range(y-1, y+1+1):
+        for i in range(x-1, x+1+1):
+            if (i < 0 or j < 0 or \
+                    i >= map_array.shape[0] or \
+                    j >= map_array.shape[1]):
+                continue
+            if (i == x and j == y):
+                continue
+            if (map_array[x][y] == 100):
+                my_winapi.mouse_click_left(left + x * boom_block_width, \
+                                           top + y * boom_block_height)
+                update_minemap()
+                if (map_array[x][y] == 98 or map_array[x][y] == 97):
+                    print("random click game over")
+                    sys.exit()
+                return
+    """
+    
 def get_around_state(x,y):
     white_count = 0
     flag_count = 0
@@ -105,12 +127,12 @@ def get_around_state(x,y):
                    j >= map_array.shape[1]):
                 continue
 
-            print((i,j))
+            #print((i,j))
             if (map_array[i][j] == 100):
                 white_count = white_count +1
             if (map_array[i][j] == 99):
                 flag_count = flag_count +1
-    print(white_count,flag_count)
+    #print(white_count,flag_count)
     return white_count, flag_count
 
 def put_the_flag(x,y):
@@ -134,10 +156,17 @@ def traverse_the_map():
     #if there is a state_num that have the right flag and the white board
     #havent been clicked , we should go back and double click the state_num,
     #skip the random click
+
+    white_count = 0
+    flag_count = 0
     for j in range(map_array.shape[1]):
         for i in range(map_array.shape[0]):
 
             state_num = map_array[i][j]
+            if (state_num == 100 or state_num == 0):
+                continue
+
+
             white_count = get_around_state(i, j)[0]
             flag_count = get_around_state(i,j)[1]
             if (state_num == flag_count and \
@@ -146,28 +175,93 @@ def traverse_the_map():
             if (state_num != 0 and state_num == white_count \
                     and flag_count == 0):
                 return 0
+            if(white_count != 0 and white_count+flag_count == state_num):
+                return 0
 
 
     return  1
 
 
+# back click map,the "x" is the original location
+#  * * * * *
+#  * * * * *
+#  * * x * *
+#  * * * * *
+#  * * * * *
+def back_click(x,y):
+    white_count = 0
+    flag_count = 0
+    for j in range(y-2, y+1+2):
+        for i in range(x-2, x+1+2):
+            if (i < 0 or j < 0 or \
+                   i >= map_array.shape[0] or \
+                   j >= map_array.shape[1]):
+                continue
+            if (i == x and j == y):
+                continue
+
+
+            if (map_array[i][j] == 0):
+                continue
+            #if (map_array[i][j] == 98 or map_array[i][j] == 97):
+            #    print("back click game over")
+            #    return
+
+            if (map_array[i][j] >=1 and map_array[i][j] <=8):
+                state_num = map_array[i][j]
+                white_count = get_around_state(i,j)[0]
+                flag_count = get_around_state(i,j)[1]
+
+                if (state_num == flag_count and \
+                        (white_count+flag_count) > state_num):
+
+                    #time.sleep(0.5)
+                    my_winapi.mouse_click_leftandright(left+i*boom_block_width,\
+                                                   top+j*boom_block_height)
+                    update_minemap()
+                    back_click(i,j)
+
+                if (state_num == white_count \
+                        and flag_count == 0):
+                    #time.sleep(0.5)
+
+                    put_the_flag(i,j)
+                    update_minemap()
+                    back_click(i, j)
+
+                if (state_num == (flag_count+white_count) \
+                        and white_count != 0):
+                    #time.sleep(0.5)
+
+                    put_the_flag(i,j)
+                    update_minemap()
+                    back_click(i,j)
+
+
+    return
+
+
 
 def auto_run():
+    random_x = 0
+    random_y = 0
+
     while(1):
         update_minemap()
-        if traverse_the_map():
-            random_click()
-            update_minemap()
+#        if traverse_the_map():
+        random_click(random_x, random_y)
+        update_minemap()
 
         for y in range(map_array.shape[1]):
             for x in range(map_array.shape[0]):
-                #update_minemap()
+
 
                 state_num = map_array[x][y]
-
-                if (state_num == 98 or state_num == 97):
-                    print("game over")
-                    return
+                if (state_num == 100):
+                    continue
+                #if (state_num == 98 or state_num == 97):
+                #    print("auto run game over")
+                #    return
 
                 white_count = get_around_state(x,y)[0]
                 flag_count = get_around_state(x,y)[1]
@@ -181,11 +275,14 @@ def auto_run():
                         update_minemap()
 
 
-                    around_state_count = white_count + flag_count
-
-                    if (state_num == around_state_count):
+                    if (state_num == (white_count + flag_count)):
                         put_the_flag(x, y)
                         update_minemap()
+
+                        back_click(x,y)
+
+                        random_x = x
+                        random_y = y
 
 
 
