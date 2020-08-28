@@ -84,36 +84,24 @@ def compare_colourdata(data,x,y):
 
 
 def random_click(x,y):
-
-    for y in range(map_array.shape[1]):
-        for x in range(map_array.shape[0]):
-            if (map_array[x][y] == 100):
-                my_winapi.mouse_click_left(left + x*boom_block_width,\
-                                           top + y*boom_block_height)
+    white_count = 0
+    for j in range(map_array.shape[1]):
+        for i in range(map_array.shape[0]):
+            if (map_array[i][j] == 100):
+                my_winapi.mouse_click_left(left + i*boom_block_width,\
+                                           top + j*boom_block_height)
+                white_count = white_count + 1
                 update_minemap()
-                if (map_array[x][y] == 98 or map_array[x][y] == 97):
+
+                if (map_array[i][j] == 98 or map_array[i][j] == 97):
                     print("random click game over")
                     sys.exit()
                 return
 
-    """
-    for j in range(y-1, y+1+1):
-        for i in range(x-1, x+1+1):
-            if (i < 0 or j < 0 or \
-                    i >= map_array.shape[0] or \
-                    j >= map_array.shape[1]):
-                continue
-            if (i == x and j == y):
-                continue
-            if (map_array[x][y] == 100):
-                my_winapi.mouse_click_left(left + x * boom_block_width, \
-                                           top + y * boom_block_height)
-                update_minemap()
-                if (map_array[x][y] == 98 or map_array[x][y] == 97):
-                    print("random click game over")
-                    sys.exit()
-                return
-    """
+    if (white_count == 0):
+        print("you win")
+        sys.exit()
+
     
 def get_around_state(x,y):
     white_count = 0
@@ -203,9 +191,11 @@ def back_click(x,y):
 
             if (map_array[i][j] == 0):
                 continue
-            #if (map_array[i][j] == 98 or map_array[i][j] == 97):
-            #    print("back click game over")
-            #    return
+
+
+            if (map_array[i][j] == 98 or map_array[i][j] == 97):
+                print("back click game over")
+                sys.exit()
 
             if (map_array[i][j] >=1 and map_array[i][j] <=8):
                 state_num = map_array[i][j]
@@ -259,9 +249,9 @@ def auto_run():
                 state_num = map_array[x][y]
                 if (state_num == 100):
                     continue
-                #if (state_num == 98 or state_num == 97):
-                #    print("auto run game over")
-                #    return
+                if (state_num == 98 or state_num == 97):
+                    print("auto run game over")
+                    sys.exit()
 
                 white_count = get_around_state(x,y)[0]
                 flag_count = get_around_state(x,y)[1]
